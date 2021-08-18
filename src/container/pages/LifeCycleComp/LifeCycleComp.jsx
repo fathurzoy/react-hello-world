@@ -64,11 +64,13 @@ export class LifeCycleComp extends Component {
     //ketiga dipanggil
     console.log("render");
     return (
-      <div>
+      <>
+        <p>Halaman LifeCycle</p>
+        <hr />
         <button className="btn" onClick={this.changeCount}>
           Component Button {this.state.count}
         </button>
-      </div>
+      </>
     );
   }
 }

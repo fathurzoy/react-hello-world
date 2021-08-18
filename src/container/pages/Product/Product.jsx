@@ -35,6 +35,8 @@ export class Product extends Component {
   render() {
     return (
       <>
+        <p>Halaman Product</p>
+        <hr />
         <div className="header">
           <div className="logo">
             <img

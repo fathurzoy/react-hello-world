@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Post from "../../component/Post/Post.jsx";
+import Post from "../../../component/Post/Post.jsx";
 import "./BlogPost.css";
 import axios from "axios";
 
@@ -126,8 +126,9 @@ export class BlogPost extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <p className="section-title">Blog Post</p>
+        <hr />
         <div className="form-add-post">
           <label htmlFor="title">Title</label>
           <input
@@ -161,7 +162,7 @@ export class BlogPost extends Component {
             />
           );
         })}
-      </div>
+      </>
     );
   }
 }
