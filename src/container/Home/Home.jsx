@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 // pages
 import BlogPost from "../pages/BlogPost/BlogPost.jsx";
+import DetailPost from "../pages/BlogPost/DetailPost/DetailPost";
 import LifeCycleComp from "../pages/LifeCycleComp/LifeCycleComp";
 import Product from "../pages/Product/Product.jsx";
 import YouTubeCompPage from "../pages/YouTubeCompPage/YouTubeCompPage";
@@ -54,6 +55,7 @@ class Home extends Component {
             <Link to="/youtube-component">Youtube</Link>
           </div>
           <Route path="/" exact component={BlogPost} />
+          <Route path="/detail-post/:postID" component={DetailPost} />
           <Route path="/product" component={Product} />
           <Route path="/lifecycle" component={LifeCycleComp} />
           <Route path="/youtube-component" component={YouTubeCompPage} />
