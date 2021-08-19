@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"; //hi order componnet
+import ActionType from "../../../../redux/reducer/globalActiontype";
 
 export class Counter extends Component {
   // state = {
@@ -70,8 +71,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handlePlus: () => dispatch({ type: "PLUS_ORDER" }),
-    handleMinus: () => dispatch({ type: "MINUS_ORDER" }),
+    handlePlus: () => dispatch({ type: ActionType.PLUS_ORDER }),
+    handleMinus: () => dispatch({ type: ActionType.MINUS_ORDER }),
   };
 };
 
