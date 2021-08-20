@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 // pages
@@ -11,17 +11,14 @@ import YouTubeCompPage from "../pages/YouTubeCompPage/YouTubeCompPage";
 // styles
 import "./Home.css";
 
+//!context
+export const RootContext = createContext();
+const Provider = RootContext.Provider; //menjadi tempat bisa dibacanya state secara global
+
 class Home extends Component {
   state = {
-    showComponent: true,
+    totalOrder: 2,
   };
-  componentDidMount() {
-    // setTimeout(() => {
-    //   this.setState({
-    //     showComponent: false,
-    //   });
-    // }, 15000);
-  }
   render() {
     return (
       <Router>
@@ -47,19 +44,21 @@ class Home extends Component {
           <hr />
           <BlogPost />
         </div> */}
-        <>
-          <div className="navigation">
-            <Link to="/">Blog Post</Link>
-            <Link to="/product">Product</Link>
-            <Link to="/lifecycle">Lifecycle</Link>
-            <Link to="/youtube-component">Youtube</Link>
-          </div>
-          <Route path="/" exact component={BlogPost} />
-          <Route path="/detail-post/:postID" component={DetailPost} />
-          <Route path="/product" component={Product} />
-          <Route path="/lifecycle" component={LifeCycleComp} />
-          <Route path="/youtube-component" component={YouTubeCompPage} />
-        </>
+        <Provider value={this.state}>
+          <>
+            <div className="navigation">
+              <Link to="/">Blog Post</Link>
+              <Link to="/product">Product</Link>
+              <Link to="/lifecycle">Lifecycle</Link>
+              <Link to="/youtube-component">Youtube</Link>
+            </div>
+            <Route path="/" exact component={BlogPost} />
+            <Route path="/detail-post/:postID" component={DetailPost} />
+            <Route path="/product" component={Product} />
+            <Route path="/lifecycle" component={LifeCycleComp} />
+            <Route path="/youtube-component" component={YouTubeCompPage} />
+          </>
+        </Provider>
       </Router>
     );
   }
