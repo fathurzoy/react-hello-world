@@ -51,15 +51,21 @@ export class Counter extends Component {
           return (
             <div className="counter">
               {/* <button className="minus" onClick={(this.props.handleMinus)}> */}
-              <button className="minus" onClick={() => null}>
+              <button
+                className="minus"
+                onClick={() => value.dispatch({ type: "MINUS_ORDER" })}
+              >
                 -
               </button>
               <input
                 type="text"
-                value={value.totalOrder}
+                value={value.state.totalOrder}
                 className="input-counter"
               />
-              <button className="plus" onClick={() => null}>
+              <button
+                className="plus"
+                onClick={() => value.dispatch({ type: "PLUS_ORDER" })}
+              >
                 +
               </button>
             </div>
