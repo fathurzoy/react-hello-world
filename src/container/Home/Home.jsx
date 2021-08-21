@@ -11,6 +11,7 @@ import YouTubeCompPage from "../pages/YouTubeCompPage/YouTubeCompPage";
 // styles
 import "./Home.css";
 import GlobalProvider from "../../context/context";
+import Hooks from "../pages/Hooks/Hooks.jsx";
 
 class Home extends Component {
   render() {
@@ -45,12 +46,14 @@ class Home extends Component {
             <Link to="/product">Product</Link>
             <Link to="/lifecycle">Lifecycle</Link>
             <Link to="/youtube-component">Youtube</Link>
+            <Link to="/hooks">Hooks</Link>
           </div>
           <Route path="/" exact component={BlogPost} />
           <Route path="/detail-post/:postID" component={DetailPost} />
           <Route path="/product" component={Product} />
           <Route path="/lifecycle" component={LifeCycleComp} />
           <Route path="/youtube-component" component={YouTubeCompPage} />
+          <Route path="/Hooks" component={Hooks} />
         </>
       </Router>
     );
