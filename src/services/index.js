@@ -1,27 +1,29 @@
-import Delete from './Delete';
-import Get from './Get';
-import Post from './Post';
-import Put from './Put'
+import axios from "axios";
 
-// * POST
-const postNewsBlog = (data) => Post('posts', false, data);
+const RootPath = "http://localhost:3004";
+const OnlineRoot = "https://jsonplaceholder.typicode.com";
 
-// * PUT
-const updateNewsBlog = (data, id) => Put(`posts/${id}`, false, data);
-
-// * DELETE
-const deleteNewsBlog = (id) => Delete(`posts/${id}`, false);
+const Get = (path, root) => {
+  const promise = new Promise((resolve, reject) => {
+    axios.get(`${root ? OnlineRoot : RootPath}/${path}`).then(
+      (result) => {
+        resolve(result.data);
+      },
+      (err) => {
+        reject(err);
+      }
+    );
+  });
+  return promise;
+};
 
 // * GET
-const getNewsBlog = () => Get('posts?_sort=id&_order=desc', false);
-const getComments = () => Get('comments', true);
+const getNewsBlog = () => Get("posts?_sort=id&_order=desc", false);
+const getComments = () => Get("comments", true);
 
 const API = {
-    postNewsBlog,
-    updateNewsBlog,
-    deleteNewsBlog,
-    getNewsBlog,
-    getComments
-}
+  getNewsBlog,
+  getComments,
+};
 
 export default API;

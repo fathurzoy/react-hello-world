@@ -10,29 +10,9 @@ import YouTubeCompPage from "../pages/YouTubeCompPage/YouTubeCompPage";
 
 // styles
 import "./Home.css";
-
-//!context
-export const RootContext = createContext();
-const Provider = RootContext.Provider; //menjadi tempat bisa dibacanya state secara global
+import GlobalProvider from "../../context/context";
 
 class Home extends Component {
-  state = {
-    totalOrder: 2,
-  };
-
-  dispatch = (action) => {
-    if (action.type === "PLUS_ORDER") {
-      return this.setState({
-        totalOrder: this.state.totalOrder + 1,
-      });
-    }
-    if (action.type === "MINUS_ORDER") {
-      return this.setState({
-        totalOrder: this.state.totalOrder - 1,
-      });
-    }
-  };
-
   render() {
     return (
       <Router>
@@ -58,29 +38,23 @@ class Home extends Component {
           <hr />
           <BlogPost />
         </div> */}
-        <Provider
-          value={{
-            state: this.state,
-            dispatch: this.dispatch,
-          }}
-        >
-          <>
-            <div className="navigation">
-              <Link to="/">Blog Post</Link>
-              <Link to="/product">Product</Link>
-              <Link to="/lifecycle">Lifecycle</Link>
-              <Link to="/youtube-component">Youtube</Link>
-            </div>
-            <Route path="/" exact component={BlogPost} />
-            <Route path="/detail-post/:postID" component={DetailPost} />
-            <Route path="/product" component={Product} />
-            <Route path="/lifecycle" component={LifeCycleComp} />
-            <Route path="/youtube-component" component={YouTubeCompPage} />
-          </>
-        </Provider>
+
+        <>
+          <div className="navigation">
+            <Link to="/">Blog Post</Link>
+            <Link to="/product">Product</Link>
+            <Link to="/lifecycle">Lifecycle</Link>
+            <Link to="/youtube-component">Youtube</Link>
+          </div>
+          <Route path="/" exact component={BlogPost} />
+          <Route path="/detail-post/:postID" component={DetailPost} />
+          <Route path="/product" component={Product} />
+          <Route path="/lifecycle" component={LifeCycleComp} />
+          <Route path="/youtube-component" component={YouTubeCompPage} />
+        </>
       </Router>
     );
   }
 }
 
-export default Home;
+export default GlobalProvider(Home);

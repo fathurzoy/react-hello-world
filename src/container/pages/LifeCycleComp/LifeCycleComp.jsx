@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./LifeCycleComp.css";
 import { connect } from "react-redux";
 import { RootContext } from "../../Home/Home";
+import { GlobalConsumer } from "../../../context/context";
 
 export class LifeCycleComp extends Component {
   constructor(props) {
@@ -66,22 +67,15 @@ export class LifeCycleComp extends Component {
     //ketiga dipanggil
     console.log("render");
     return (
-      <RootContext.Consumer>
-        {(value) => {
-          console.log("value", value);
-          return (
-            <>
-              <p>Halaman LifeCycle</p>
-              <hr />
-              <button className="btn" onClick={this.changeCount}>
-                Component Button {this.state.count}
-              </button>
-              <hr />
-              <p>Total Order: {value.state.totalOrder}</p>
-            </>
-          );
-        }}
-      </RootContext.Consumer>
+      <>
+        <p>Halaman LifeCycle</p>
+        <hr />
+        <button className="btn" onClick={this.changeCount}>
+          Component Button {this.state.count}
+        </button>
+        <hr />
+        <p>Total Order: {this.props.state.totalOrder}</p>
+      </>
     );
   }
 }
@@ -93,4 +87,4 @@ const mapStateToProps = (state) => {
 };
 
 // export default connect(mapStateToProps)(LifeCycleComp);
-export default LifeCycleComp;
+export default GlobalConsumer(LifeCycleComp);

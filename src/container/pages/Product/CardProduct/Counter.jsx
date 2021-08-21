@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"; //hi order componnet
+import { GlobalConsumer } from "../../../../context/context";
 import ActionType from "../../../../redux/reducer/globalActionType";
 import { RootContext } from "../../../Home/Home";
 
@@ -44,34 +45,28 @@ export class Counter extends Component {
 
   render() {
     console.log(this.props);
+    console.log(this);
     return (
-      <RootContext.Consumer>
-        {(value) => {
-          console.log("value", value);
-          return (
-            <div className="counter">
-              {/* <button className="minus" onClick={(this.props.handleMinus)}> */}
-              <button
-                className="minus"
-                onClick={() => value.dispatch({ type: "MINUS_ORDER" })}
-              >
-                -
-              </button>
-              <input
-                type="text"
-                value={value.state.totalOrder}
-                className="input-counter"
-              />
-              <button
-                className="plus"
-                onClick={() => value.dispatch({ type: "PLUS_ORDER" })}
-              >
-                +
-              </button>
-            </div>
-          );
-        }}
-      </RootContext.Consumer>
+      <div className="counter">
+        {/* <button className="minus" onClick={(this.props.handleMinus)}> */}
+        <button
+          className="minus"
+          onClick={() => this.props.dispatch({ type: "MINUS_ORDER" })}
+        >
+          -
+        </button>
+        <input
+          type="text"
+          value={this.props.state.totalOrder}
+          className="input-counter"
+        />
+        <button
+          className="plus"
+          onClick={() => this.props.dispatch({ type: "PLUS_ORDER" })}
+        >
+          +
+        </button>
+      </div>
     );
   }
 }
@@ -91,4 +86,4 @@ const mapDispatchToProps = (dispatch) => {
 
 //state global, fungsi dispatch
 // export default connect(mapStateToProps, mapDispatchToProps)(Counter);
-export default Counter;
+export default GlobalConsumer(Counter);
