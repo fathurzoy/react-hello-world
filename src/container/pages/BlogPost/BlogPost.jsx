@@ -40,23 +40,34 @@ export class BlogPost extends Component {
   };
 
   postDataToAPI = () => {
-    axios.post(`http://localhost:3004/posts`, this.state.formBlogPost).then(
-      (res) => {
-        console.log(res);
-        this.getPostApi();
-        this.setState({
-          formBlogPost: {
-            id: 1,
-            title: "",
-            body: "",
-            userId: 1,
-          },
-        });
-      },
-      (err) => {
-        console.log("error: ", err);
-      }
-    );
+    API.postNewsBlog(this.state.formBlogPost).then((res) => {
+      this.getPostApi();
+      this.setState({
+        formBlogPost: {
+          id: 1,
+          title: "",
+          body: "",
+          userId: 1,
+        },
+      });
+    });
+    // axios.post(`http://localhost:3004/posts`, this.state.formBlogPost).then(
+    //   (res) => {
+    //     console.log(res);
+    //     this.getPostApi();
+    //     this.setState({
+    //       formBlogPost: {
+    //         id: 1,
+    //         title: "",
+    //         body: "",
+    //         userId: 1,
+    //       },
+    //     });
+    //   },
+    //   (err) => {
+    //     console.log("error: ", err);
+    //   }
+    // );
   };
 
   putDataToAPI = () => {
@@ -167,13 +178,13 @@ export class BlogPost extends Component {
             Simpan
           </button>
         </div>
-        {this.state.comments.map((comment) => {
+        {/* {this.state.comments.map((comment) => {
           return (
             <p>
               {comment.name} - {comment.email}
             </p>
           );
-        })}
+        })} */}
         {this.state.post.map((post) => {
           return (
             <Post
